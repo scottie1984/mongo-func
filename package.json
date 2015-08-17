@@ -1,0 +1,21 @@
+{
+  "name": "mongo-func",
+  "version": "0.0.0",
+  "description": "A functional approach to MongoDB",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "test": "npm run build && mocha"
+  },
+  "dependencies": {
+    "mongodb": "1.4.9",
+    "q": "1.2.0",
+    "ramda": "0.17.1",
+    "babel": "5.8.21"
+  },
+  "devDependencies": {
+    "mocha": "2.1.0"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
+}
