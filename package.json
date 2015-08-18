@@ -4,7 +4,7 @@
   "description": "A functional approach to MongoDB",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "build": "./node_modules/.bin/babel src --out-dir lib",
     "test": "npm run build && mocha"
   },
   "dependencies": {
