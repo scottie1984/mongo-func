@@ -5,10 +5,10 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "./node_modules/.bin/babel src --out-dir lib",
-    "test": "npm run build && mocha"
+    "test": "npm run build && mocha --require blanket --reporter mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"
   },
   "engines": {
-      "node": ">= 0.10.x"
+    "node": ">= 0.10.x"
   },
   "dependencies": {
     "mongodb": "1.4.9",
@@ -17,16 +17,25 @@
     "babel": "5.8.21"
   },
   "devDependencies": {
-    "mocha": "2.1.0"
+    "mocha": "2.1.0",
+    "coveralls": "~2.11.4",
+    "mocha-lcov-reporter": "0.0.2",
+    "blanket": "~1.1.7"
+  },
+  "config": {
+    "blanket": {
+      "pattern": [ "lib" ],
+      "data-cover-never": [ "node_modules", "tests" ]
+    }
   },
   "author": "",
   "repository": {
-      "type": "git",
-      "url": "git@github.com:scottie1984/mongo-func.git"
+    "type": "git",
+    "url": "git@github.com:scottie1984/mongo-func.git"
   },
   "license": "BSD-2-Clause",
   "readmeFilename": "README.md",
   "bugs": {
-      "url": "https://github.com/scottie1984/mongo-func/issues"
+    "url": "https://github.com/scottie1984/mongo-func/issues"
   }
 }
