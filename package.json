@@ -1,11 +1,14 @@
 {
   "name": "mongo-func",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A functional approach to MongoDB",
   "main": "lib/index.js",
   "scripts": {
     "build": "./node_modules/.bin/babel src --out-dir lib",
     "test": "npm run build && mocha"
+  },
+  "engines": {
+      "node": ">= 0.10.x"
   },
   "dependencies": {
     "mongodb": "1.4.9",
@@ -17,5 +20,13 @@
     "mocha": "2.1.0"
   },
   "author": "",
-  "license": "BSD-2-Clause"
+  "repository": {
+      "type": "git",
+      "url": "git@github.com:scottie1984/mongo-func.git"
+  },
+  "license": "BSD-2-Clause",
+  "readmeFilename": "README.md",
+  "bugs": {
+      "url": "https://github.com/scottie1984/mongo-func/issues"
+  }
 }
