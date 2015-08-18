@@ -19,7 +19,20 @@ describe('Mongo', function() {
   beforeEach(function(done) {
       mf.dropCollection("mongodb://localhost:27017/mongo-func", 'test')().then(function(){
         done();
+      }).catch(function() {
+        done();
       })
+  });
+
+  describe('connection error', function () {
+      it('should return an error when it cannot connect to mongo', function (done) {
+        mf.findOne("mongodb://hostnothere:999/mongo-func", 'test', {})().then(function(result) {
+
+        }).catch(function(err) {
+           assert.equal(err, "Error: failed to connect to [hostnothere:999]");
+           done();
+        });
+      });
   });
 
   describe('findOne (non-curry)', function () {

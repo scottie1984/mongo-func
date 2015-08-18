@@ -16,7 +16,11 @@ var connectToCollection = collectionName => {
 
 var resultResolver = (resolve, reject) => {
     return (err, result) => {
-       resolve(result);
+       if (err) {
+          reject(err);
+       } else {
+          resolve(result);
+       }
     }
 }
 
