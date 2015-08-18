@@ -21,8 +21,8 @@ var resultResolver = (resolve, reject) => {
        } else {
           resolve(result);
        }
-    }
-}
+    };
+};
 
 var findOneDoc = R.curry( (document, collection) => {
     return new Promise((resolve, reject) => {
@@ -64,13 +64,13 @@ var runner = R.curry((fn, connectionString, collectionName) => {
     var connector = R.composeP(fn, connectToCollection(collectionName));
     return () => {
         return connector(connectionString);
-    }
+    };
 });
 
 var funcRunner = R.curry((mongoFn, input, connectionString, collectionName) => {
     var inputFn = input;
     if (typeof input === 'object') {
-       inputFn = function() { return input };
+       inputFn = function() { return input; };
     }
     return R.curryN(inputFn.length, (...args) => {
         var queryValue = inputFn.apply(null,args);

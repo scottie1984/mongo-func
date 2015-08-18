@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "./node_modules/.bin/babel src --out-dir lib",
-    "test": "npm run build && mocha --require blanket --reporter mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"
+    "hint": "./node_modules/.bin/jshint src/*",
+    "test": "npm run build && npm run hint && mocha --require blanket --reporter mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"
   },
   "engines": {
     "node": ">= 0.10.x"
@@ -20,12 +21,18 @@
     "mocha": "2.1.0",
     "coveralls": "~2.11.4",
     "mocha-lcov-reporter": "0.0.2",
-    "blanket": "~1.1.7"
+    "blanket": "~1.1.7",
+    "jshint": "~2.8.0"
   },
   "config": {
     "blanket": {
-      "pattern": [ "lib" ],
-      "data-cover-never": [ "node_modules", "tests" ]
+      "pattern": [
+        "lib"
+      ],
+      "data-cover-never": [
+        "node_modules",
+        "tests"
+      ]
     }
   },
   "author": "",
