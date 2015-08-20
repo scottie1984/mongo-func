@@ -5,8 +5,9 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "./node_modules/.bin/babel src --out-dir lib",
-    "hint": "./node_modules/.bin/jshint src/*",
-    "test": "npm run build && npm run hint && mocha --require blanket --reporter mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"
+    "hint": "./node_modules/.bin/jshint src/* && ./node_modules/.bin/jshint test/*",
+    "test": "npm run build && npm run hint && mocha --require blanket --reporter mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js",
+    "test-local": "npm run build && npm run hint && mocha"
   },
   "engines": {
     "node": ">= 0.10.x"
