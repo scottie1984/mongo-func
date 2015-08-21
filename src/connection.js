@@ -1,5 +1,3 @@
-'use strict';
-
 import { MongoClient } from 'mongodb';
 import * as R from 'ramda';
 

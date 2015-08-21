@@ -1,5 +1,3 @@
-'use strict';
-
 import * as R from 'ramda';
 import { connectToCollection } from './connection';
 
