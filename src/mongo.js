@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // Retrieve
 import * as mongo from 'mongodb';
@@ -6,15 +6,15 @@ import { getConnection } from './connection';
 import * as Q from 'q';
 import * as R from 'ramda';
 
-var getCollection = R.curry( (collectionName, db) => {
+let getCollection = R.curry( (collectionName, db) => {
     return db.collection(collectionName);
 });
 
-var connectToCollection = collectionName => {
+let connectToCollection = collectionName => {
     return R.composeP(getCollection(collectionName), getConnection);
 };
 
-var resultResolver = (resolve, reject) => {
+let resultResolver = (resolve, reject) => {
     return (err, result) => {
        if (err) {
           reject(err);
@@ -24,59 +24,59 @@ var resultResolver = (resolve, reject) => {
     };
 };
 
-var findOneDoc = R.curry( (document, collection) => {
+let findOneDoc = R.curry( (document, collection) => {
     return new Promise((resolve, reject) => {
         collection.findOne(document, resultResolver(resolve, reject));
     });
 });
 
-var findDoc = R.curry( (document, collection) => {
+let findDoc = R.curry( (document, collection) => {
     return new Promise((resolve, reject) => {
         collection.find(document).toArray(resultResolver(resolve, reject));
     });
 });
 
-var insertDoc = R.curry( (document, collection) => {
+let insertDoc = R.curry( (document, collection) => {
     return new Promise((resolve, reject) => {
         collection.insert(document, resultResolver(resolve, reject));
     });
 });
 
-var updateDoc = R.curry( (query, update, collection) => {
+let updateDoc = R.curry( (query, update, collection) => {
     return new Promise((resolve, reject) => {
         collection.update(query, update, resultResolver(resolve, reject));
     });
 });
 
-var removeDoc = R.curry( (document, collection) => {
+let removeDoc = R.curry( (document, collection) => {
     return new Promise((resolve, reject) => {
         collection.remove(document, resultResolver(resolve, reject));
     });
 });
 
-var drop = collection => {
+let drop = collection => {
     return new Promise((resolve, reject) => {
         collection.drop(resultResolver(resolve, reject));
     });
 };
 
-var runner = R.curry((fn, connectionString, collectionName) => {
-    var connector = R.composeP(fn, connectToCollection(collectionName));
+let runner = R.curry((fn, connectionString, collectionName) => {
+    let connector = R.composeP(fn, connectToCollection(collectionName));
     return () => {
         return connector(connectionString);
     };
 });
 
-var funcRunner = R.curry((mongoFn, input, connectionString, collectionName) => {
+let funcRunner = R.curry((mongoFn, input, connectionString, collectionName) => {
     return R.curryN(inputFn.length, (...args) => {
-        var queryValue = inputFn.apply(null,args);
-        var connector = R.composeP(mongoFn(queryValue), connectToCollection(collectionName));
+        let queryValue = inputFn.apply(null,args);
+        let connector = R.composeP(mongoFn(queryValue), connectToCollection(collectionName));
         return connector(connectionString);
     });
 });
 
 function createInputFn(input){
-    var inputFn = input;
+    let inputFn = input;
     if (typeof input === 'object') {
        inputFn = function() { return input; };
     }
@@ -93,16 +93,33 @@ export var find = R.curry((connectionString, collectionName, input) => {
 
 export var insert = R.curry((connectionString, collectionName, input) => {
     return funcRunner(insertDoc, createInputFn(input), connectionString, collectionName);
+=======
+export let findOne = R.curry((connectionString, collectionName, input) => {
+    return funcRunner(findOneDoc, input, connectionString, collectionName);
 });
 
-export var update = R.curry((connectionString, collectionName, query, update) => {
+export let find = R.curry((connectionString, collectionName, input) => {
+    return funcRunner(findDoc, input, connectionString, collectionName);
+});
+
+export let insert = R.curry((connectionString, collectionName, input) => {
+    return funcRunner(insertDoc, input, connectionString, collectionName);
+>>>>>>> 64ade4c5d9d532016a3f9ba8ca8085771324e821
+});
+
+export let update = R.curry((connectionString, collectionName, query, update) => {
     return runner(updateDoc(query, update), connectionString, collectionName);
 });
 
-export var dropCollection = R.curry((connectionString, collectionName) => {
+export let dropCollection = R.curry((connectionString, collectionName) => {
     return runner(drop, connectionString, collectionName);
 });
 
+<<<<<<< HEAD
 export var remove = R.curry((connectionString, collectionName, input) => {
     return funcRunner(removeDoc, createInputFn(input), connectionString, collectionName);
+=======
+export let remove = R.curry((connectionString, collectionName, input) => {
+    return funcRunner(removeDoc, input, connectionString, collectionName);
+>>>>>>> 64ade4c5d9d532016a3f9ba8ca8085771324e821
 });
