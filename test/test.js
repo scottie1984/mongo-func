@@ -29,7 +29,7 @@ describe('Mongo', function() {
         mf.findOne('mongodb://hostnothere:999/mongo-func', 'test', {})().then(function(result) {
 
         }).catch(function(err) {
-           assert.equal(err, 'Error: failed to connect to [hostnothere:999]');
+           assert.deepEqual(err, { name: 'MongoError', message: 'getaddrinfo ENOTFOUND' });
            done();
         });
       });

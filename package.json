@@ -13,12 +13,12 @@
     "node": ">= 0.10.x"
   },
   "dependencies": {
-    "mongodb": "1.4.9",
+    "mongodb": "2.0.42",
     "ramda": "0.17.1",
     "babel": "5.8.21"
   },
   "devDependencies": {
-    "mocha": "*",
+    "mocha": "2.2.5",
     "coveralls": "~2.11.4",
     "mocha-lcov-reporter": "0.0.2",
     "blanket": "~1.1.7",
