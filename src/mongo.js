@@ -68,10 +68,6 @@ var runner = R.curry((fn, connectionString, collectionName) => {
 });
 
 var funcRunner = R.curry((mongoFn, input, connectionString, collectionName) => {
-    var inputFn = input;
-    if (typeof input === 'object') {
-       inputFn = function() { return input; };
-    }
     return R.curryN(inputFn.length, (...args) => {
         var queryValue = inputFn.apply(null,args);
         var connector = R.composeP(mongoFn(queryValue), connectToCollection(collectionName));
@@ -79,16 +75,24 @@ var funcRunner = R.curry((mongoFn, input, connectionString, collectionName) => {
     });
 });
 
+function createInputFn(input){
+    var inputFn = input;
+    if (typeof input === 'object') {
+       inputFn = function() { return input; };
+    }
+    return inputFn;
+}
+
 export var findOne = R.curry((connectionString, collectionName, input) => {
-    return funcRunner(findOneDoc, input, connectionString, collectionName);
+    return funcRunner(findOneDoc, createInputFn(input), connectionString, collectionName);
 });
 
 export var find = R.curry((connectionString, collectionName, input) => {
-    return funcRunner(findDoc, input, connectionString, collectionName);
+    return funcRunner(findDoc, createInputFn(input), connectionString, collectionName);
 });
 
 export var insert = R.curry((connectionString, collectionName, input) => {
-    return funcRunner(insertDoc, input, connectionString, collectionName);
+    return funcRunner(insertDoc, createInputFn(input), connectionString, collectionName);
 });
 
 export var update = R.curry((connectionString, collectionName, query, update) => {
@@ -100,5 +104,5 @@ export var dropCollection = R.curry((connectionString, collectionName) => {
 });
 
 export var remove = R.curry((connectionString, collectionName, input) => {
-    return funcRunner(removeDoc, input, connectionString, collectionName);
+    return funcRunner(removeDoc, createInputFn(input), connectionString, collectionName);
 });
