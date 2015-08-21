@@ -1,12 +1,11 @@
 'use strict';
 
 import { MongoClient } from 'mongodb';
-import * as Q from 'q';
 import * as R from 'ramda';
 
 let connectionPool = {};
 
-export function getConnection(connectionString) {
+function getConnection(connectionString) {
     return new Promise((resolve, reject) => {
         let hasConnection = R.pick([connectionString], connectionPool);
         if (R.keys(hasConnection).length !== 0) {
@@ -23,3 +22,11 @@ export function getConnection(connectionString) {
         }
     });
 }
+
+let getCollection = R.curry( (collectionName, db) => {
+    return db.collection(collectionName);
+});
+
+export let connectToCollection = collectionName => {
+    return R.composeP(getCollection(collectionName), getConnection);
+};
