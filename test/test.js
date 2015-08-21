@@ -152,6 +152,37 @@ describe('Mongo', function() {
                     });
       });
 
+      it('should update a document matching the query as a function', function (done) {
+
+            var findScooby = function(name) { return { scooby: name}; };
+            var updateScooby = updateToTest(findScooby, {$set: {scooby: 'too'}});
+
+            insertToTest({scooby: 'doo', scrappy: 'woo'})()
+                .then(updateScooby('doo'))
+                .then(findOneFromTest({scooby: 'too'}))
+                .then(function(doc) {
+                          assert.equal(doc.scooby, 'too');
+                          assert.equal(doc.scrappy, 'woo');
+                          done();
+                      });
+      });
+
+      it('should update a document matching the query as a function and update as a function', function (done) {
+
+          var findScooby = function(name) { return { scooby: name}; };
+          var updateScooby = function(name) { return {$set: {scooby: name}}; };
+          var updateScoobyToo = updateToTest(findScooby, updateScooby);
+
+          insertToTest({scooby: 'doo', scrappy: 'woo'})()
+              .then(updateScoobyToo('doo')('too'))
+              .then(findOneFromTest({scooby: 'too'}))
+              .then(function(doc) {
+                        assert.equal(doc.scooby, 'too');
+                        assert.equal(doc.scrappy, 'woo');
+                        done();
+                    });
+      });
+
   });
 
   describe('find', function () {
