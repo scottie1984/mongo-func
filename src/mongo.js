@@ -37,26 +37,39 @@ let drop = collection => {
     });
 };
 
-export var findOne = R.curry((connectionString, collectionName, input) => {
-    return helpers.funcBuilder(findOneDoc, helpers.createInputFn(input), connectionString, collectionName);
+//input: String, String, Object OR Function (returns Object)
+//output: Function ( accepts parameters of query function )
+export var findOne = R.curry((connectionString, collectionName, query) => {
+    return helpers.funcBuilder(findOneDoc, helpers.createInputFn(query), connectionString, collectionName);
 });
 
-export var find = R.curry((connectionString, collectionName, input) => {
-    return helpers.funcBuilder(findDoc, helpers.createInputFn(input), connectionString, collectionName);
+//input: String, String, Object OR Function (returns Object)
+//output: Function ( accepts parameters of query function )
+export var find = R.curry((connectionString, collectionName, query) => {
+    return helpers.funcBuilder(findDoc, helpers.createInputFn(query), connectionString, collectionName);
 });
 
-export var insert = R.curry((connectionString, collectionName, input) => {
-    return helpers.funcBuilder(insertDoc, helpers.createInputFn(input), connectionString, collectionName);
+//input: String, String, Object OR Function (returns Object)
+//output: Function ( accepts parameters of query function )
+export var insert = R.curry((connectionString, collectionName, document) => {
+    return helpers.funcBuilder(insertDoc, helpers.createInputFn(document), connectionString, collectionName);
 });
 
+//input: String, String, Object OR Function (returns Object), Object OR Function (returns Object)
+//output: Function ( accepts parameters of query function )
+//if update is a Function then another Function is returned ( accepts parameters of update function )
 export let update = R.curry((connectionString, collectionName, query, update) => {
     return helpers.funcBuilder2(updateDoc, helpers.createInputFn(query), update, connectionString, collectionName);
 });
 
+//input: String, String
+//output: Function
 export let dropCollection = R.curry((connectionString, collectionName) => {
     return helpers.runner(drop, connectionString, collectionName);
 });
 
-export let remove = R.curry((connectionString, collectionName, input) => {
-    return helpers.funcBuilder(removeDoc, helpers.createInputFn(input), connectionString, collectionName);
+//input: String, String, Object OR Function (returns Object)
+//output: Function ( accepts parameters of query function )
+export let remove = R.curry((connectionString, collectionName, query) => {
+    return helpers.funcBuilder(removeDoc, helpers.createInputFn(query), connectionString, collectionName);
 });
