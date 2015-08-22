@@ -2,6 +2,14 @@
   "name": "mongo-func",
   "version": "0.0.1",
   "description": "A functional approach to MongoDB",
+  "keywords": [
+      "mongo",
+      "mongodb",
+      "function",
+      "functional",
+      "curry",
+      "database"
+  ],
   "main": "lib/index.js",
   "scripts": {
     "build": "./node_modules/.bin/babel src --out-dir lib",
@@ -35,7 +43,10 @@
       ]
     }
   },
-  "author": "",
+  "author": {
+      "name": "Stephen Scott",
+      "email": "scottie1984@gmail.com"
+  }
   "repository": {
     "type": "git",
     "url": "git@github.com:scottie1984/mongo-func.git"
@@ -44,5 +55,6 @@
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/scottie1984/mongo-func/issues"
-  }
+  },
+  "homepage": "https://github.com/scottie1984/mongo-func",
 }
