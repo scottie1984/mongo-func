@@ -29,7 +29,7 @@ describe('Mongo', function() {
         mf.findOne('mongodb://hostnothere:999/mongo-func', 'test', {})().then(function(result) {
 
         }).catch(function(err) {
-           assert.deepEqual(err, { name: 'MongoError', message: 'getaddrinfo ENOTFOUND' });
+           assert.equal(err.name, 'MongoError');
            done();
         });
       });
