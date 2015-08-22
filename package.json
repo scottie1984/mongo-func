@@ -46,7 +46,7 @@
   "author": {
       "name": "Stephen Scott",
       "email": "scottie1984@gmail.com"
-  }
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:scottie1984/mongo-func.git"
@@ -56,5 +56,5 @@
   "bugs": {
     "url": "https://github.com/scottie1984/mongo-func/issues"
   },
-  "homepage": "https://github.com/scottie1984/mongo-func",
+  "homepage": "https://github.com/scottie1984/mongo-func"
 }
