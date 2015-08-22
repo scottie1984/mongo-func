@@ -14,12 +14,12 @@ $ npm install mongo-func --save
 ```
 ## What
 Providing a functional library to common MongoDB functions:
-* [findOne]()
-* [find]()
-* [insert]()
-* [update]() 
-* [remove]() 
-* [dropCollection]() 
+* [findOne](#findOne)
+* [find](#find)
+* [insert](#insert)
+* [update](#update)
+* [remove](#remove)
+* [dropCollection](#dropCollection)
 
 All functions are curried by default therefore the functions aren't applied until the final parameter is provided. This allows you to create small, composable functions that are easy to test. 
 
