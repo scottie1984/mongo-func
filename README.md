@@ -5,6 +5,8 @@ A functional approach to MongoDB
 [![Coverage Status](https://coveralls.io/repos/scottie1984/mongo-func/badge.svg?branch=master&service=github)](https://coveralls.io/github/scottie1984/mongo-func?branch=master)
 [![bitHound Score](https://www.bithound.io/github/scottie1984/mongo-func/badges/score.svg)](https://www.bithound.io/github/scottie1984/mongo-func)
 ![Dependencies](https://david-dm.org/scottie1984/mongo-func.svg)
+[![npm version](https://badge.fury.io/js/mongo-func.svg)](http://badge.fury.io/js/mongo-func)
+
 
 
 ## Install
