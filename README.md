@@ -64,6 +64,23 @@ finderFromTest({scooby: 'doo'})().then(function(docs) {
     console.log(docs);
 });
 ```
+#### count
+Count all documents from mongo matching the document query
+##### Parameters:
+```javascript
+//input: String, String, Object OR Function (returns Object)
+//output: Function ( accepts parameters of query function )
+mf.count(connectionString, collectionName, query)
+```
+##### Example:
+```javascript
+var counter = mf.count('mongodb://localhost:27017/mongo-func');
+var counterFromTest = counter('test');
+
+counterFromTest({scooby: 'doo'})().then(function(count) {
+    console.log(count);
+});
+```
 #### insert
 Insert document into mongo
 ##### Parameters:
