@@ -13,6 +13,12 @@ let findDoc = R.curry( (document, collection) => {
     });
 });
 
+let countDoc = R.curry( (document, collection) => {
+    return new Promise((resolve, reject) => {
+        collection.count(document, helpers.resultResolver(resolve, reject));
+    });
+});
+
 let insertDoc = R.curry( (document, collection) => {
     return new Promise((resolve, reject) => {
         collection.insert(document, helpers.resultResolver(resolve, reject));
@@ -72,4 +78,10 @@ export let dropCollection = R.curry((connectionString, collectionName) => {
 //output: Function ( accepts parameters of query function )
 export let remove = R.curry((connectionString, collectionName, query) => {
     return helpers.funcBuilder(removeDoc, helpers.createInputFn(query), connectionString, collectionName);
+});
+
+//input: String, String, Object OR Function (returns Object)
+//output: Function ( accepts parameters of query function )
+export let count = R.curry((connectionString, collectionName, query) => {
+    return helpers.funcBuilder(countDoc, helpers.createInputFn(query), connectionString, collectionName);
 });

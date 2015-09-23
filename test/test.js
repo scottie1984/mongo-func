@@ -9,12 +9,14 @@ describe('Mongo', function() {
   var inserter = mf.insert('mongodb://localhost:27017/mongo-func');
   var updater = mf.update('mongodb://localhost:27017/mongo-func');
   var remover = mf.remove('mongodb://localhost:27017/mongo-func');
+  var counter = mf.count('mongodb://localhost:27017/mongo-func');
 
   var findOneFromTest = findOner('test');
   var finderFromTest = finder('test');
   var insertToTest = inserter('test');
   var updateToTest = updater('test');
   var removeFromTest = remover('test');
+  var countFromTest = counter('test');
 
   beforeEach(function(done) {
       mf.dropCollection('mongodb://localhost:27017/mongo-func', 'test')().then(function(){
@@ -225,4 +227,25 @@ describe('Mongo', function() {
       });
 
   });
+
+  describe('count', function () {
+
+        it('should count documents in the collection', function (done) {
+
+          var insert3Docs = R.composeP(insertToTest({scooby: 'doo', scrappy: 'foo'}),
+                                          insertToTest({scooby: 'doo', scrappy: 'woo'}),
+                                          insertToTest({scooby: 'doo', scrappy: 'woo'}));
+            insert3Docs()
+                .then(countFromTest({scooby: 'doo'}))
+                .then(function(count) {
+                  assert.equal(count, 3);
+                })
+                .then(countFromTest({scooby: 'doo', scrappy: 'woo'}))
+                .then(function(count) {
+                   assert.equal(count, 2);
+                   done();
+                });
+        });
+
+    });
 });
