@@ -18,6 +18,7 @@ $ npm install mongo-func --save
 Providing a functional library to common MongoDB functions:
 * [findOne](#findOne)
 * [find](#find)
+* [count](#count)
 * [insert](#insert)
 * [update](#update)
 * [remove](#remove)
