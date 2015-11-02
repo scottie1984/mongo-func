@@ -8,8 +8,17 @@ let findOneDoc = R.curry( (document, collection) => {
 });
 
 let findDoc = R.curry( (document, collection) => {
+	let operationDefinitions = ['limit', 'sort', 'skip'];
+    let operations = R.pick(operationDefinitions, document);
+    document = R.omit(operationDefinitions, document);
+
     return new Promise((resolve, reject) => {
-        collection.find(document).toArray(helpers.resultResolver(resolve, reject));
+        let find = collection.find(document);
+        R.mapObjIndexed((val, key) => {
+           find = find[key](val);
+        }, operations);
+
+        find.toArray(helpers.resultResolver(resolve, reject));
     });
 });
 

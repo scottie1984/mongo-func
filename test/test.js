@@ -204,6 +204,33 @@ describe('Mongo', function() {
                   });
     });
 
+    it('should return all documents matching query with operation', function () {
+
+		var insertAndFindScoobyDoo = R.composeP(finderFromTest({scooby: 'doo', limit: 1}),
+									  insertToTest({scooby: 'dont', scrappy: 'foo'}),
+									  insertToTest({scooby: 'doo', scrappy: 'loo'}),
+									  insertToTest({scooby: 'doo', scrappy: 'woo'}));
+		return insertAndFindScoobyDoo()
+			.then(function(docs) {
+					  assert.equal(docs.length, 1);
+					  assert.equal(docs[0].scrappy, 'woo');
+				  });
+	});
+
+	it('should return all documents matching query with operation sort', function () {
+
+		var insertAndFindScoobyDoo = R.composeP(finderFromTest({scooby: 'doo', limit: 2, sort: { scrappy: 1 }}),
+									  insertToTest({scooby: 'doo', scrappy: 'B'}),
+									  insertToTest({scooby: 'doo', scrappy: 'A'}),
+									  insertToTest({scooby: 'doo', scrappy: 'C'}));
+		return insertAndFindScoobyDoo()
+			.then(function(docs) {
+					  assert.equal(docs.length, 2);
+					  assert.equal(docs[0].scrappy, 'A');
+					  assert.equal(docs[1].scrappy, 'B');
+				  });
+	});
+
   });
 
   describe('remove', function () {

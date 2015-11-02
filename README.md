@@ -49,7 +49,7 @@ findOneFromTest({scooby: 'doo'})().then(function(doc) {
 });
 ```
 #### find
-Find all documents from mongo based on the document query
+Find all documents from mongo based on the document query. Query can include options sort, limit and skip.
 ##### Parameters:
 ```javascript
 //input: String, String, Object OR Function (returns Object)
