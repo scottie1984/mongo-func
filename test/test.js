@@ -10,6 +10,7 @@ describe('Mongo', function() {
   var updater = mf.update('mongodb://localhost:27017/mongo-func');
   var remover = mf.remove('mongodb://localhost:27017/mongo-func');
   var counter = mf.count('mongodb://localhost:27017/mongo-func');
+  var distincter = mf.distinct('mongodb://localhost:27017/mongo-func');
 
   var findOneFromTest = findOner('test');
   var finderFromTest = finder('test');
@@ -17,6 +18,7 @@ describe('Mongo', function() {
   var updateToTest = updater('test');
   var removeFromTest = remover('test');
   var countFromTest = counter('test');
+  var distinctFromTest = distincter('test');
 
   beforeEach(function(done) {
       mf.dropCollection('mongodb://localhost:27017/mongo-func', 'test')().then(function(){
@@ -275,4 +277,20 @@ describe('Mongo', function() {
         });
 
     });
+
+    describe('distinct', function () {
+
+		it('should return distinct fields in collection', function () {
+
+		  var insert3Docs = R.composeP(insertToTest({scooby: 'doo', scrappy: 'foo'}),
+										  insertToTest({scooby: 'doo', scrappy: 'woo'}),
+										  insertToTest({scooby: 'doo', scrappy: 'woo'}));
+			return insert3Docs()
+				.then(distinctFromTest('scrappy'))
+				.then(function(result) {
+				  assert.deepEqual(result, ['woo', 'foo']);
+				});
+		});
+
+	});
 });

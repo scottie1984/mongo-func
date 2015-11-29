@@ -40,7 +40,7 @@ export let funcBuilder2 = R.curry((mongoFn, query, update, connectionString, col
 
 export function createInputFn(input){
     let inputFn = input;
-    if (typeof input === 'object') {
+    if (typeof input === 'object' || typeof input ===  'string') {
        inputFn = function() { return input; };
     }
     return inputFn;

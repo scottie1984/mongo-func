@@ -52,6 +52,12 @@ let drop = collection => {
     });
 };
 
+let distinctFields = R.curry( (field, collection) => {
+    return new Promise((resolve, reject) => {
+        collection.distinct(field, helpers.resultResolver(resolve, reject));
+    });
+});
+
 //input: String, String, Object OR Function (returns Object)
 //output: Function ( accepts parameters of query function )
 export var findOne = R.curry((connectionString, collectionName, query) => {
@@ -93,4 +99,10 @@ export let remove = R.curry((connectionString, collectionName, query) => {
 //output: Function ( accepts parameters of query function )
 export let count = R.curry((connectionString, collectionName, query) => {
     return helpers.funcBuilder(countDoc, helpers.createInputFn(query), connectionString, collectionName);
+});
+
+//input: String, String, String OR Function (returns String)
+//output: Function ( accepts parameters of field function )
+export let distinct = R.curry((connectionString, collectionName, field) => {
+    return helpers.funcBuilder(distinctFields, helpers.createInputFn(field), connectionString, collectionName);
 });
