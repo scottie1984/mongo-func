@@ -21,12 +21,12 @@
     "node": ">= 0.10.x"
   },
   "dependencies": {
-    "mongodb": "2.0.42",
-    "ramda": "0.17.1",
-    "babel": "5.8.21"
+    "mongodb": "2.2.12",
+    "ramda": "0.21.0",
+    "babel": "5.8.38"
   },
   "devDependencies": {
-    "mocha": "2.2.5",
+    "mocha": "2.4.5",
     "coveralls": "~2.11.4",
     "mocha-lcov-reporter": "0.0.2",
     "blanket": "~1.1.7",
@@ -58,3 +58,5 @@
   },
   "homepage": "https://github.com/scottie1984/mongo-func"
 }
+
+
