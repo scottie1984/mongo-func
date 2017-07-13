@@ -1,6 +1,6 @@
 {
   "name": "mongo-func",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A functional approach to MongoDB",
   "keywords": [
       "mongo",
@@ -58,5 +58,3 @@
   },
   "homepage": "https://github.com/scottie1984/mongo-func"
 }
-
-
