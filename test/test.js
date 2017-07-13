@@ -293,4 +293,13 @@ describe('Mongo', function() {
 		});
 
 	});
+
+  describe('connection with object', function () {
+    it('should return null when document not found', function (done) {
+      mf.findOne({ connectionString: 'mongodb://localhost:27017/mongo-func' }, 'test', {})().then(function(docs) {
+         assert.equal(docs, null);
+         done();
+      });
+    });
+  });
 });

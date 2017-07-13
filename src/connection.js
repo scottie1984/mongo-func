@@ -5,8 +5,8 @@ let connectionPool = {};
 
 function getConnection(connectionObject) {
     return new Promise((resolve, reject) => {
-        const connectionString = typeof connectionObject === 'String' ? connectionObject : connectionObject.connectionString;
-        const options = typeof connectionObject === 'String' ? {} : R.omit(['connectionString'], connectionObject);
+        const connectionString = typeof connectionObject === 'string' ? connectionObject : connectionObject.connectionString;
+        const options = typeof connectionObject === 'string' ? {} : R.omit(['connectionString'], connectionObject);
         let hasConnection = R.pick([connectionString], connectionPool);
         if (R.keys(hasConnection).length !== 0) {
             resolve(connectionPool[connectionString]);
