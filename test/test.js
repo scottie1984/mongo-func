@@ -302,4 +302,19 @@ describe('Mongo', function() {
       });
     });
   });
+
+  describe('stats', function () {
+
+      it('should return stats for the DB', function (done) {
+
+        var stats = mf.stats('mongodb://localhost:27017/mongo-func');
+
+        stats
+          .then(function(stats) {
+             assert.equal(stats.ok, 1);
+             done();
+          });
+      });
+
+  });
 });

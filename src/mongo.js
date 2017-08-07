@@ -106,3 +106,5 @@ export let count = R.curry((connectionString, collectionName, query) => {
 export let distinct = R.curry((connectionString, collectionName, field) => {
     return helpers.funcBuilder(distinctFields, helpers.createInputFn(field), connectionString, collectionName);
 });
+
+export let stats = helpers.stats;

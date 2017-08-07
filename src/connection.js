@@ -3,7 +3,7 @@ import * as R from 'ramda';
 
 let connectionPool = {};
 
-function getConnection(connectionObject) {
+export function getConnection(connectionObject) {
     return new Promise((resolve, reject) => {
         const connectionString = typeof connectionObject === 'string' ? connectionObject : connectionObject.connectionString;
         const options = typeof connectionObject === 'string' ? {} : R.omit(['connectionString'], connectionObject);

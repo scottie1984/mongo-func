@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { connectToCollection } from './connection';
+import { connectToCollection, getConnection } from './connection';
 
 export let resultResolver = (resolve, reject) => {
     return (err, result) => {
@@ -49,4 +49,9 @@ export function createInputFn(input){
 function mongoFnRunner(fn, collectionName, connectionString) {
     let connector = R.composeP(fn, connectToCollection(collectionName));
     return connector(connectionString);
+}
+
+export function stats(connectionString) {
+  return getConnection(connectionString)
+    .then(db => new Promise((resolve, reject) => db.stats(resultResolver(resolve, reject))));
 }
