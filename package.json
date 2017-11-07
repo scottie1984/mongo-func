@@ -1,6 +1,6 @@
 {
   "name": "mongo-func",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A functional approach to MongoDB",
   "keywords": [
     "mongo",
@@ -22,13 +22,13 @@
   },
   "dependencies": {
     "mongodb": "2.2.12",
-    "ramda": "0.21.0"
+    "ramda": "0.21.0",
+    "babel-polyfill": "^6.26.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-plugin-transform-export-extensions": "^6.22.0",
-    "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "blanket": "~1.1.7",
     "coveralls": "~2.11.4",
