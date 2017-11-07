@@ -1,3 +1,3 @@
-require('babel/polyfill');
+require("babel-polyfill");
 
-export * from './mongo';
+export * from "./mongo";
