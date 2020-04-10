@@ -171,7 +171,7 @@ describe('Mongo', function() {
                       });
       });
 
-      it('should update a document matching the query as a function and update as a function', function (done) {
+      it.skip('should update a document matching the query as a function and update as a function', function (done) {
 
           var findScooby = function(name) { return { scooby: name}; };
           var updateScooby = function(name) { return {$set: {scooby: name}}; };
