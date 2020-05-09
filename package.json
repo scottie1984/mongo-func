@@ -1,6 +1,6 @@
 {
   "name": "mongo-func",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "A functional approach to MongoDB",
   "keywords": [
     "mongo",

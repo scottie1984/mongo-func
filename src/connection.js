@@ -19,10 +19,8 @@ export function getConnection(connectionObject) {
         : R.omit(["connectionString"], connectionObject);
     let hasConnection = R.pick([connectionString], connectionPool);
     if (R.keys(hasConnection).length !== 0) {
-      console.log('Reusing connection')
       resolve(connectionPool[connectionString]);
     } else {
-      console.log('Creating new connection')
       MongoClient.connect(connectionString, options, (err, db) => {
         if (err) {
           reject(err);
