@@ -3,7 +3,7 @@ import * as R from "ramda";
 
 let connectionPool = {};
 
-export function setConnection(connectionStr, db) {
+export function setConnection(connectionString, db) {
   connectionPool[connectionString] = db;
 }
 
