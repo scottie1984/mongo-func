@@ -3,6 +3,10 @@ import * as R from "ramda";
 
 let connectionPool = {};
 
+export function setConnection(connectionStr, db) {
+  connectionPool[connectionString] = db;
+}
+
 export function getConnection(connectionObject) {
   return new Promise((resolve, reject) => {
     const connectionString =
