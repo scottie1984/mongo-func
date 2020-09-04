@@ -21,7 +21,7 @@
     "node": ">= 0.10.x"
   },
   "dependencies": {
-    "mongodb": "2.2.12",
+    "mongodb": "3.1.13",
     "ramda": "0.21.0",
     "babel-polyfill": "^6.26.0"
   },
